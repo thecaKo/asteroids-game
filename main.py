@@ -11,11 +11,21 @@ def main():
     player = Player(x = SCREEN_WIDTH /2, y = SCREEN_HEIGHT / 2)
 
     while True:
+        # Handle events first
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return
+
+        dt = clock.tick(60) / 1000
+        
+        # Update game state
+        player.update(dt)  # Add this line!
+        
+        # Draw everything
         pygame.Surface.fill(screen, color="black")
         player.draw(screen)
         pygame.display.flip()
-        dt = clock.tick(60) / 1000
-
 
 if __name__ == "__main__":
     main()  
